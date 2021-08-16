@@ -1,0 +1,29 @@
+name: flutter-snap-app
+version: '0.1'
+summary: Flutter app packaged in a Snap package
+description: Showcase for some OpenGl initialization problems
+
+confinement: strict
+base: core18
+
+slots:
+  dbus-flutter-snap-app:
+    interface: dbus
+    bus: session
+    name: de.devmil.flutter-snap-app
+
+apps:
+  flutter-snap-app:
+    command: bin/snapcraft_showcase
+    extensions: [flutter-stable]
+    plugs:
+    - network
+    slots:
+      - dbus-flutter-snap-app
+
+parts:
+  flutter-snap-app:
+    plugin: flutter
+    source: .
+    source-type: local
+    flutter-target: lib/main.dart
